@@ -34,14 +34,14 @@ RUN if [ ${INSTALL_BASE_LIB} = true ]; then \
   apt-get install --assume-yes apt-utils -y libbz2-dev libexpat1-dev libghc-gnutls-dev libsecret-1-dev libgconf2-4 libdb-dev libgmp3-dev zlib1g-dev linux-libc-dev libcurl4-gnutls-dev libgudev-1.0-dev uuid-dev libpng-dev libjpeg-dev libfreetype6-dev libssh-dev libssh2-1-dev libpcre3-dev libpcre++-dev libmhash-dev libmcrypt-dev libltdl7-dev mcrypt libiconv-hook-dev libsqlite-dev libgettextpo0 libwrap0-dev libreadline-dev \
   ;fi
 
-ARG INSTALL_ZSH=true
-ENV INSTALL_ZSH ${INSTALL_ZSH}
-RUN if [ ${INSTALL_ZSH} = true ]; then \
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
-  ;fi
-RUN if [ ${INSTALL_ZSH} = true ]; then \
-  chsh -s $(which zsh) \
-  ;fi
+#ARG INSTALL_ZSH=true
+#ENV INSTALL_ZSH ${INSTALL_ZSH}
+#RUN if [ ${INSTALL_ZSH} = true ]; then \
+#  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended \
+#  ;fi
+#RUN if [ ${INSTALL_ZSH} = true ]; then \
+#  chsh -s $(which zsh) \
+#  ;fi
 
 COPY home/ /root/
 
@@ -51,11 +51,11 @@ RUN if [ ${INSTALL_PYTHON3} = true ]; then \
     apt-get install --assume-yes apt-utils -y python3 python3-dev python3-pip python3-setuptools python3-lxml python3-venv \
   ;fi
 
-RUN if [ ${INSTALL_PYTHON3} = true && ${MIRROR_CN} = true ]; then \
-  pip3 install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip && \
-  pip3 config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
+RUN if [[ ${INSTALL_PYTHON3} = true && ${MIRROR_CN} != true ]]; then \
+  pip3 install --upgrade pip \
   ;fi
 
-RUN if [ ${INSTALL_PYTHON3} = true && ${MIRROR_CN} = false ]; then \
-  pip3 install --upgrade pip \
+RUN if [[ ${INSTALL_PYTHON3} = true && ${MIRROR_CN} = true ]]; then \
+  pip3 install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip; \
+  pip3 config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
   ;fi
