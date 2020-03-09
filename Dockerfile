@@ -51,11 +51,11 @@ RUN if [ ${INSTALL_PYTHON3} = true ]; then \
     apt-get install --assume-yes apt-utils -y python3 python3-dev python3-pip python3-setuptools python3-lxml python3-venv \
   ;fi
 
-RUN if [[ ${INSTALL_PYTHON3} = true && ${MIRROR_CN} != true ]]; then \
+RUN if [ ${INSTALL_PYTHON3} = true && ${MIRROR_CN} != true ]; then \
   pip3 install --upgrade pip \
   ;fi
 
-RUN if [[ ${INSTALL_PYTHON3} = true && ${MIRROR_CN} = true ]]; then \
-  pip3 install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip; \
-  pip3 config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
+RUN if [ ${INSTALL_PYTHON3} = true && ${MIRROR_CN} = true ]; then \
+  pip3 config set global.index-url https://mirrors.aliyun.com/pypi/simple/ && \
+  pip3 install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip \
   ;fi
