@@ -56,6 +56,6 @@ RUN if [ ${INSTALL_PYTHON3} = true ] && [ ${MIRROR_CN} != true ]; then \
   ;fi
 
 RUN if [ ${INSTALL_PYTHON3} = true ] && [ ${MIRROR_CN} = true ]; then \
-  pip3 config set global.index-url https://mirrors.aliyun.com/pypi/simple/ && \
-  pip3 install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip \
+  pip3 install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip; \
+  pip3 config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
   ;fi
