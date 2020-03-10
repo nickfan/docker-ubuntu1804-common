@@ -1,0 +1,85 @@
+[user]
+	name = maintainer
+	email = me@example.com
+	username = maintainer
+[core]
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+	ignorecase = false
+	pager =
+	safecrlf = true
+	quotepath = false
+[alias]
+	test = "!gi() { curl http://www.gitignore.io/api/$@ ;}; gi"
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	lg = "log --graph --decorate=short --pretty=oneline"
+;[http]
+;	proxy = sock5://127.0.0.1:8387
+
+[push]
+	default = simple
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[format]
+  ;pretty = oneline
+  pretty = format:"%h - %cd - %an, %ce : %s"
+[commit]
+	template = ~/.stCommitMsg
+	gpgsign = false
+[color]
+  pager = true
+  ui = auto
+  status = auto
+  diff = auto
+  branch = auto
+  showBranch = auto
+  interactive = auto
+  grep = auto
+[color "status"]
+  header = black bold
+  branch = cyan
+  nobranch = red
+  unmerged = red
+  untracked = cyan
+  added = cyan
+  changed = red
+[color "diff"]
+  meta = red bold
+  frag = black bold
+  func = blue
+  old = red
+  new = cyan
+  commit = blue
+  whitespace = red
+  context = normal
+[color "branch"]
+  current = cyan
+  local = blue
+  remote = magenta
+  upstream = magenta
+  plain = normal
+[color "decorate"]
+  branch = blue
+  remoteBranch = magenta
+  tag = magenta
+  stash = cyan
+  HEAD = blue
+[color "interactive"]
+  prompt = red
+  header = red bold
+  error = red
+  help = black bold
+[color "grep"]
+  context = normal
+  match = cyan
+  filename = blue
+  function = blue
+  selected = normal
+  separator = red bold
+  linenumber = normal

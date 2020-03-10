@@ -1,0 +1,191 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2017 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+    # set spacevim theme. by default colorscheme layer is not loaded,
+    # if you want to use more colorscheme, please load the colorscheme
+    # layer
+#colorscheme = "gruvbox"
+#colorscheme = "material"
+#colorscheme = "hybrid"
+#colorscheme = "jellybeans"
+#colorscheme = "onedark"
+colorscheme = "onedark"
+#    colorscheme = "OceanicNext"
+    colorscheme_bg = "dark"
+
+    background = "dark"
+    # Disable guicolors in basic mode, many terminal do not support 24bit
+    # true colors
+    enable_guicolors = true
+#enable_guicolors = false
+    # Disable statusline separator, if you want to use other value, please
+    # install nerd fonts
+    statusline_separator = "arrow"
+    statusline_inactive_separator = "arrow"
+    buffer_index_type = 4
+    enable_tabline_filetype_icon = true
+    enable_statusline_display_mode = false
+    filetree_direction = "left"
+    vim_help_language = "cn"
+
+#guifont = "DejaVu\ Sans\ Mono\ for\ Powerline\ 11"
+#guifont = "Hack\ Nerd\ Font\ 11"
+guifont = "Hack Nerd Font:h14"
+#guifont = "Hack\ Regular\ Nerd\ Font\ Complete:h11:cANSI"
+#guifontwide = "Hei:h11"
+#guifont = "SauceCodePro Nerd Font Mono:h11"
+
+    number = false
+    relativenumber = false
+
+    timeoutlen = 600
+    bootstrap_after = "myinitvim#after"
+
+#[[custom_plugins]]
+#name = "mhartington/oceanic-next"
+#merged = false
+
+
+[[custom_plugins]]
+name = "lilydjwg/colorizer"
+on_cmd = ["ColorHighlight", "ColorToggle"]
+merged = false
+
+[[custom_plugins]]
+name = "ryanoasis/vim-devicons"
+merged = false
+
+[[layers]]
+name = "colorscheme"
+##random_theme = true
+##frequency = "daily"
+
+[[layers]]
+name = "default"
+
+[[layers]]
+name = "chinese"
+
+[[layers]]
+name = "lsp"
+# npm i -g bash-language-server
+# npm install -g javascript-typescript-langserver
+# npm install  -g vue-language-server
+# pip install --user python-language-server
+# npm install -g vscode-css-languageserver-bin
+
+# Enable autocomplete layer
+[[layers]]
+name = 'autocomplete'
+auto-completion-return-key-behavior = "complete"
+auto-completion-tab-key-behavior = "smart"
+
+[[layers]]
+name = 'shell'
+default_position = 'top'
+default_height = 30
+
+[[layers]]
+name = "format"
+
+[[layers]]
+name = "tools"
+
+[[layers]]
+name = "tools#dash"
+
+[[layers]]
+name = "checkers"
+show_cursor_error = true
+
+[[layers]]
+name = "debug"
+
+[[layers]]
+name = "incsearch"
+
+[[layers]]
+name = "fzf"
+
+[[layers]]
+name = "git"
+
+[[layers]]
+name = "github"
+
+[[layers]]
+name = "tmux"
+
+[[layers]]
+name = "sudo"
+
+[[layers]]
+name = "test"
+
+[[layers]]
+name = "gtags"
+#gtagslabel = "pygments"
+gtagslabel = "ctags"
+
+[[layers]]
+name = "lang#go"
+
+[[layers]]
+name = "lang#python"
+
+[[layers]]
+name = "lang#sh"
+
+[[layers]]
+name = "lang#markdown"
+
+[[layers]]
+name = "lang#toml"
+
+[[layers]]
+name = "lang#json"
+
+[[layers]]
+name = "lang#javascript"
+
+[[layers]]
+name = "lang#typescript"
+
+[[layers]]
+name = "lang#vue"
+
+[[layers]]
+name = "lang#html"
+
+[[layers]]
+name = "lang#sql"
+
+[[layers]]
+name = "lang#java"
+
+[[layers]]
+name = "lang#php"
+
+[[layers]]
+name = "lang#graphql"
+
+[[layers]]
+name = "lang#rust"
+
+[[layers]]
+name = "lang#dart"
+
+[[layers]]
+name = "lang#julia"
+
+[[layers]]
+name = "lang#plantuml"
+
+

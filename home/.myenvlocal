@@ -1,0 +1,15 @@
+#export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+
+export PATH=${HOME}/.cargo/bin:${HOME}/.composer/vendor/bin:$PATH
+
+#export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
+export YARN_DIR="${HOME}/.yarn"
+export PATH=${YARN_DIR}/bin:$PATH
+
+export GOROOT=/usr/local/go
+export GOPATH="${HOME}/go"
+export PATH=${GOPATH}/bin:$PATH:${GOROOT}/bin
+
+export GO_SOURCE_URL="https://github.com/golang/go"
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node

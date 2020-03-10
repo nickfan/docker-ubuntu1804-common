@@ -1,0 +1,15 @@
+alias cdgouser='cd ~/go/src/github.com/user'
+alias sizedloglist='find -maxdepth 1 -size +0 -print'
+alias cleansizedlog='find -maxdepth 1 -size +0 -exec cp /dev/null {} \;'
+
+# 杀死所有正在运行的容器.
+alias dockerkill='docker kill $(docker ps -a -q)'
+
+# 删除所有已经停止的容器.
+alias dockercleanc='docker rm $(docker ps -a -q)'
+
+# 删除所有未打标签的镜像.
+alias dockercleani='docker rmi $(docker images -q -f dangling=true)'
+
+# 删除所有已经停止的容器和未打标签的镜像.
+alias dockerclean='dockercleanc || true && dockercleani'

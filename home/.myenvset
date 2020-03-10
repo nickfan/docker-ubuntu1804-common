@@ -1,0 +1,99 @@
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias vi='vim'
+#alias zhcon='zhcon --utf8 --drv=fb'
+alias acme.sh=~/.acme.sh/acme.sh
+alias xdmcp='/opt/X11/bin/X -query'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# add for mac
+#if [ -f ~/.ssh/id_rsa ]; then
+#    ssh-add -K ~/.ssh/id_rsa 2>/dev/null
+#fi
+
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+    eval `ssh-agent -s`
+# add for mac
+#    ssh-add -K
+fi
+
+export LANG="zh_CN.UTF-8"
+export LC_ALL="zh_CN.UTF-8"
+export EDITOR="vim"
+export PATH="$PATH:$HOME/bin"
+
+export PYTHONPATH=$PYTHONPATH
+
+function setpx(){
+  local pxport="${1:-1884}"
+  local pxhost="${2:-127.0.0.1}"
+  export https_proxy="http://${pxhost}:${pxport}";
+  export http_proxy="http://${pxhost}:${pxport}";
+  export all_proxy="http://${pxhost}:${pxport}";
+  export no_proxy=".thebizark.com,.bizarkdev.com,localhost,.example.com,128.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
+}
+function sets5px(){
+  local pxport="${1:-8387}"
+  local pxhost="${2:-127.0.0.1}"
+  export https_proxy="socks5://${pxhost}:${pxport}";
+  export http_proxy="socks5://${pxhost}:${pxport}";
+  export all_proxy="socks5://${pxhost}:${pxport}";
+  export no_proxy=".thebizark.com,.bizarkdev.com,localhost,.example.com,128.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
+}
+
+function setnopx(){
+    unset http_proxy
+    unset https_proxy
+    unset ftp_proxy
+    unset all_proxy
+    unset no_proxy
+}
+proxy_enable() {
+    export https_proxy="http://127.0.0.1:1884";
+    export http_proxy="http://127.0.0.1:1884";
+    export all_proxy="socks5://127.0.0.1:8387";
+
+    #export http_proxy="127.0.0.1:1984"
+    #export https_proxy="127.0.0.1:1984"
+    #export ftp_proxy="127.0.0.1:1984"
+    export no_proxy=".thebizark.com,.bizarkdev.com,localhost,.example.com,128.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
+
+}
+proxy_disable() {
+    unset http_proxy
+    unset https_proxy
+    unset ftp_proxy
+    unset all_proxy
+    unset no_proxy
+}
+
+vagrantproxy_enable() {
+    export VAGRANT_HTTP_PROXY="192.168.10.1:1984"
+    export VAGRANT_HTTPS_PROXY="192.168.10.1:1984"
+    export VAGRANT_FTP_PROXY="192.168.10.1:1984"
+    export VAGRANT_NO_PROXY="localhost,127.0.0.1,.example.com,.thebizark.com"
+}
+
+vagrantproxy_disable() {
+    unset VAGRANT_HTTP_PROXY
+    unset VAGRANT_HTTPS_PROXY
+    unset VAGRANT_FTP_PROXY
+    unset VAGRANT_NO_PROXY
+}
+
+if [ -f $HOME/.myenvlocal_os ]; then
+ source $HOME/.myenvlocal_os;
+elif [ -f $HOME/.myenvlocal ]; then
+ source $HOME/.myenvlocal;
+fi
+
+#alias tmux='TERM=screen-256color tmux -2'
+#alias tmuxinator='TERM=screen-256color tmuxinator'
+#alias tmux1='TERM=screen-256color tmux'
+
+if [ -f $HOME/.myenvalias ]; then source $HOME/.myenvalias;fi
