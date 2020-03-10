@@ -31,7 +31,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --assume-yes apt-uti
 ARG INSTALL_BASE_LIB=true
 ENV INSTALL_BASE_LIB ${INSTALL_BASE_LIB}
 RUN if [ ${INSTALL_BASE_LIB} = true ]; then \
-  apt-get install --assume-yes apt-utils -y libbz2-dev libexpat1-dev libghc-gnutls-dev libsecret-1-dev libgconf2-4 libdb-dev libgmp3-dev zlib1g-dev linux-libc-dev libcurl4-gnutls-dev libgudev-1.0-dev uuid-dev libpng-dev libjpeg-dev libfreetype6-dev libssh-dev libssh2-1-dev libpcre3-dev libpcre++-dev libmhash-dev libmcrypt-dev libltdl7-dev mcrypt libiconv-hook-dev libsqlite-dev libgettextpo0 libwrap0-dev libreadline-dev \
+  apt-get install --assume-yes apt-utils -y libbz2-dev libexpat1-dev libghc-gnutls-dev libsecret-1-dev libgconf2-4 libdb-dev libgmp3-dev zlib1g-dev linux-libc-dev libcurl4-gnutls-dev libgudev-1.0-dev uuid-dev libpng-dev libjpeg-dev libfreetype6-dev libcairo2-dev libssh-dev libssh2-1-dev libpcre3-dev libpcre++-dev libmhash-dev libmcrypt-dev libltdl7-dev mcrypt libiconv-hook-dev libsqlite-dev libgettextpo0 libwrap0-dev libreadline-dev \
   ;fi
 
 #ARG INSTALL_ZSH=true
@@ -48,14 +48,14 @@ COPY home/ /root/
 ARG INSTALL_PYTHON3=true
 ENV INSTALL_PYTHON3 ${INSTALL_PYTHON3}
 RUN if [ ${INSTALL_PYTHON3} = true ]; then \
-    apt-get install --assume-yes apt-utils -y python3 python3-dev python3-pip python3-setuptools python3-lxml python3-venv \
+    apt-get install --assume-yes apt-utils -y python3 python3-dev python3-pip python3-setuptools python3-lxml python3-venv python3-wheel python3-cffi \
   ;fi
 
 RUN if [ ${INSTALL_PYTHON3} = true ] && [ ${MIRROR_CN} != true ]; then \
-  pip3 install --upgrade pip \
+  pip3 install --upgrade pip setuptools \
   ;fi
 
 RUN if [ ${INSTALL_PYTHON3} = true ] && [ ${MIRROR_CN} = true ]; then \
-  pip3 install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip; \
+  pip3 install -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip setuptools; \
   pip3 config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
   ;fi
